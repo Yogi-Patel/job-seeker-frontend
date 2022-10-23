@@ -33,8 +33,8 @@ class Signin extends Component
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          username: this.state.signInUsername,
-          password: this.state.signInPassword
+          username: this.state.signInUsername.trim(),
+          password: this.state.signInPassword.trim()
         })
       })
       .then(data => {
