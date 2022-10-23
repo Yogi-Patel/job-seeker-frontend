@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './Signin.css';
+
+
 class Signin extends Component 
 {
     /* 
@@ -87,8 +88,8 @@ class Signin extends Component
                 <input className="b ph3 pv2 input-reset ba b--black grow pointer f5 dib" type="submit" value="Sign in" onClick={this.onSubmitSignIn}/>
                 </div>
                 <div className="lh-copy mt3">
-                  <button className="f5 link dim black db button_without_style underline" onClick={() => {alert('You need to add functionality for registering')}}>Register</button>
-                  <button className="f5 link dim black db button_without_style underline" onClick={() => {alert('You need to add functionality for demos ')}}>I just want to demo</button>
+                  <button className="f5 link dim black db button_without_style underline" onClick={() => { this.props.changeState('route', 'register') }} >Sign Up</button>
+                  <button className="f5 link dim black db button_without_style underline" onClick={() => {alert('You need to add functionality for demos ') }} >I just want to demo</button>
                 </div>
               </form>
             </main>
