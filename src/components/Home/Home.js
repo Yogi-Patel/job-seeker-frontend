@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+
 class Home extends Component 
 {
     constructor(props)
@@ -14,9 +15,8 @@ class Home extends Component
     render()
     {
         return (
-            <h1>
-                {`Hello, ${this.state.username}! You are ${this.state.signedIn && "signed in"}`}
-            </h1>
+            <h1 className="center">This is the heading</h1>
+            
             
         )
     }

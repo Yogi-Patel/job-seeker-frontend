@@ -31,7 +31,9 @@ class HomeBanner extends Component
                     <button className="f6 br-pill dark-green no-underline ba grow pv2 ph3 dib button_without_style" onClick = { () => {this.props.changeState('route', 'signin')}}>
                     Sign In
                     </button>
+
                 </div>
+                <button style = {{paddingTop: "20px"}}className="center f5 link dim black db button_without_style underline" onClick={() => {this.props.demo()}} >I just want to demo</button>
             </article>
 
         );

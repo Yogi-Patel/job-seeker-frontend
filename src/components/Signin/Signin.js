@@ -89,7 +89,7 @@ class Signin extends Component
                 </div>
                 <div className="lh-copy mt3">
                   <button className="f5 link dim black db button_without_style underline" onClick={() => { this.props.changeState('route', 'register') }} >Sign Up</button>
-                  <button className="f5 link dim black db button_without_style underline" onClick={() => {alert('You need to add functionality for demos ') }} >I just want to demo</button>
+                  <button className="f5 link dim black db button_without_style underline" onClick={() => {this.props.demo()}} >I just want to demo</button>
                 </div>
               </form>
             </main>
