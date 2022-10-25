@@ -29,7 +29,7 @@ class Home extends Component
 
     render()
     {
-        console.log(this.state)
+        
         return (
             <article id = 'home_container' className=" center br2 mb5  shadow-5-ns ">
                 <div className = 'home-div fl w-75 pa2'>
@@ -37,12 +37,12 @@ class Home extends Component
                 </div>
                 <div className = " home-div shadow-left fl w-25 pa0 ">
                     <div id = "main" className ="home-color " ><h1 id = "bottom" className="f3 f2-m f1-l fw2 black-90 mt0 tl ml3 mb2">Menu</h1></div>
-                    <div className="pa0">
+                    <div className="pa0 mt4">
                         <h1 className="f4 b db mb2 ml3">Search:</h1>
                         <input id="name" className="input-reset ba b--black-90 pa2 mb0 db w-90 center" type="text" onChange={this.onSearchChange} 
                         placeholder="Search by company name"></input>
                         <h1 className="f4 b db mb2 ml3">Filter by:</h1>
-                        <ul className="list pl0 ma0 measure center">
+                        <ul className="list pl0 ma0 center">
                             <li id = "all" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
                             ${this.state.filter === 'all' && "home-color"}`} onClick = {this.changeFilter} >All</li>
                             <li id = "applied" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
