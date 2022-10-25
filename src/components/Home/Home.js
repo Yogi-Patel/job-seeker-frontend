@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import logo from '../../Logo.png'
 
 class Home extends Component 
 {
@@ -32,7 +32,21 @@ class Home extends Component
         
         return (
             <article id = 'home_container' className=" center br2 mb5  shadow-5-ns ">
-                <div className = 'home-div fl w-75 pa2'>
+                <div className = 'home-div fl w-75 pa2 lightest-gray'>
+                    <div id = "main" className = "shadow-2-ns h-10 br4 ma3 ml3 ">
+                        <div id = "vertical-center" className="horizontal-align">
+                            <img  src = {logo} alt="logo" /> 
+                            <h2  className="v-mid pl3" >Application Tracker</h2> 
+                            <button class="no-underline near-white bg-animate bg-near-black hover-bg-gray inline-flex items-center ma2 tc br-pill pa2 ml3 button_without_style">
+                                <svg class="dib h2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" 
+                                stroke-miterlimit="1.414">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" fill-rule="nonzero"/></svg>
+                                <span class="f5 ml3 pr2">Add job</span>
+                            </button>
+                            
+                        </div>
+                        
+                    </div>
 
                 </div>
                 <div className = " home-div shadow-left fl w-25 pa0 ">

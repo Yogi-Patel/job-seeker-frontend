@@ -67,10 +67,13 @@ code
 {
     background-color: #50ac54;
 }
-#main {
+
+#main 
+{
     position: relative;
     height: 6rem; 
-  }
+}
+
 #bottom 
 {
     position: absolute;
@@ -78,3 +81,33 @@ code
     left: 0; 
 }
 
+#vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+}
+
+.h-10
+{
+    height: 10%;
+}
+
+.off-white
+{
+    background-color: #FAF9F6;
+}
+
+.lightest-gray 
+{
+    background-color: rgba(243,244,246,255) ;
+}
+
+.horizontal-align {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
