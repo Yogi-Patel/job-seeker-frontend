@@ -11,7 +11,7 @@ class About extends Component
                     <p class="measure lh-copy">
                         <h3>What is Job Seeker?</h3>
                         Job Seeker (this website) is something I built with React in the frontend and Express.js in the backend.
-                        Instead of keeping track of your job applications in a spreadsheet like a dinosaur, one can use this.
+                        Instead of keeping track of your job applications in a spreadsheet like a dinosaur, you can use this.
 
                     </p>
                     <p class="measure lh-copy">

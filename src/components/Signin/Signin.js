@@ -44,6 +44,17 @@ class Signin extends Component
         
         if(data.success)
         {
+          const refresh_database = async () => {
+            await fetch(`${this.props.api_url}/refresh`, {
+                method: "post",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    username: this.state.signInUsername.trim(),
+                    signedIn: true
+                })
+            }).then(() => {})
+          }
+          refresh_database()
           this.props.changeState('route', "home")
           this.props.changeState('username', data.username)
           this.props.changeState('signedIn', true)

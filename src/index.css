@@ -8,6 +8,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
     
     background-color:  #abb2b9  ;
+
+
+    overflow: hidden;
 }
 
 code 
@@ -38,8 +41,40 @@ code
     text-align: center;
 }
 
-#container 
+#container, #home_container
 {
     background-color: white;
+}
+
+#home_container
+{
+    height: 80%;
+    width: 85%;
+    margin: 1px;
+}
+
+.home-div 
+{
+    height: 100%;
+}
+
+.shadow-left 
+{
+    box-shadow: -5px 5px 4px 2px rgba( 0, 0, 0, 0.2 );
+}
+
+.home-color
+{
+    background-color: #50ac54;
+}
+#main {
+    position: relative;
+    height: 6rem; 
+  }
+#bottom 
+{
+    position: absolute;
+    bottom: 0;
+    left: 0; 
 }
 

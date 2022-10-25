@@ -62,12 +62,12 @@ class App extends Component {
             username: this.state.username,
             signedIn: this.state.signedIn
         }
-        console.log(this.state)
         
+        //{ ['signin', 'register', 'start', 'about'].includes(this.state.route)? "App centered-div": "App" }
         return (
             <>
                 <Navbar route = {this.state.route} changeState={this.changeState} signedIn ={this.state.signedIn} />
-                <div className={ ['signin', 'register', 'start', 'about'].includes(this.state.route)? "App centered-div": "App" } >
+                <div className="centered-div" >
                     { this.state.route === 'start' && <HomeBanner changeState={this.changeState} demo={this.demo}/> }
                     { this.state.route === 'about' && <About /> }
                     { this.state.route === "signin" && <Signin api_url={api_url} changeState={this.changeState} demo={this.demo}/> }
