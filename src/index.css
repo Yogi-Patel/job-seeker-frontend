@@ -7,7 +7,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
-    background-color:  #abb2b9  ;
+    background-color: #cecece /* #abb2b9 */ ;
 
 
     overflow: hidden;
@@ -74,6 +74,11 @@ code
     height: 6rem; 
 }
 
+.relative-main 
+{   
+    position:relative;
+}
+
 #bottom 
 {
     position: absolute;
@@ -90,9 +95,23 @@ code
 
 }
 
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+}
+
 .h-10
 {
     height: 10%;
+}
+
+.h-85
+{
+    height: 85%;
 }
 
 .off-white
@@ -102,7 +121,7 @@ code
 
 .lightest-gray 
 {
-    background-color: rgba(243,244,246,255) ;
+    background-color: #f3f4f6 ;
 }
 
 .horizontal-align {
@@ -111,3 +130,20 @@ code
     justify-content: center;
     align-items: center;
   }
+
+.scrollable 
+{
+    overflow: scroll; 
+    overflow-x: hidden; 
+    
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
