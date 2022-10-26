@@ -72,7 +72,7 @@ class App extends Component {
                     { this.state.route === 'about' && <About /> }
                     { this.state.route === "signin" && <Signin api_url={api_url} changeState={this.changeState} demo={this.demo}/> }
                     { this.state.route === 'register' && <Register api_url={api_url} changeState={this.changeState} demo={this.demo}/> }
-                    { this.state.route === 'home' && <Home AppState = {AppStateForHome} />}
+                    { this.state.route === 'home' && <Home api_url={api_url} AppState = {AppStateForHome} />}
                     <ParticlesBg type="circle" bg={true} />
                 </div>
             </>
