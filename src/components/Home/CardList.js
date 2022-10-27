@@ -12,8 +12,10 @@ class CardList extends React.Component
 
     render()
     {
+        
         return (
             this.props.filteredData.map(dataItem => {
+                
                 return (
                     <Card Key = {dataItem.id} dataItem={dataItem} />
                 )
