@@ -17,7 +17,7 @@ class CardList extends React.Component
             this.props.filteredData.map(dataItem => {
                 
                 return (
-                    <Card Key = {dataItem.id} dataItem={dataItem} />
+                    <Card key = {dataItem.id} dataItem={dataItem} cardClicked = {this.props.cardClicked}/>
                 )
                 
             })

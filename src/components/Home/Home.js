@@ -11,17 +11,26 @@ class Home extends Component
             signedIn: this.props.AppState.signedIn,
             filter: "all",
             searchField: '',
-            add: false,
-            update: false,
-            data: []
+            task: 'list',
+            data: [],
+            updateData: {}
         }
         
     }
+
+
+    changeTask = async (value) =>
+    {
+        await this.setState({task: value})
+    }
+
 
     componentDidMount()
     {
         this.fetchData('all')
     }
+
+
     fetchData = async (filter) =>
     {
         await fetch(`${this.props.api_url}/jobs`, {
@@ -43,6 +52,7 @@ class Home extends Component
         })
     }
 
+
     changeFilter = async (event) =>
     {     
         await this.setState({filter: event.target.id})
@@ -50,14 +60,28 @@ class Home extends Component
         
     }
 
+
     onSearchChange = (event) =>
     {
         this.setState({searchField: event.target.value})
     }
 
+    cardClicked = async (notLink, id) =>
+    {
+        /* Function to know which car was clicked on when the  */
+        // notLink ?console.log(id): console.log("Link")  
 
-    
-
+        if (notLink)
+        {
+            await this.setState({task: 'update'})
+            //need to update updateData
+            console.log(this.state.task)
+        }
+        else 
+        {
+            console.log("Link")
+        }
+    }
     render()
     {
         /* console.log("STATE")
@@ -83,7 +107,8 @@ class Home extends Component
                         <div id = "vertical-center" className="horizontal-align">
                             <img  src = {logo} alt="logo" /> 
                             <h2  className="v-mid pl3" >Application Tracker</h2> 
-                            <button className="no-underline near-white bg-animate home-color hover-bg-light-green  inline-flex items-center ma2 tc br-pill pa2 ml3 button_without_style">
+                            <button className="no-underline near-white bg-animate home-color hover-bg-light-green  inline-flex items-center ma2 tc br-pill pa2 ml3 button_without_style" 
+                            onClick ={ () => {this.changeTask('add')}} >
                                 <svg className="dib h2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" 
                                 strokeMiterlimit="1.414">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" fillRule="nonzero"/></svg>
@@ -95,7 +120,7 @@ class Home extends Component
                     {/* Start of Scrollable list of all the jobs that have been added */}
                     <div className="scrollable no-scrollbar h-80 mt5">
                         {/* Start of singular div for displaying a list */}
-                        { filteredData.length !== 0 &&  <CardList filteredData={filteredData}/>}
+                        { this.state.task === 'list' && filteredData.length !== 0 &&  <CardList filteredData={filteredData} cardClicked = {this.cardClicked} />}
                         
                         
                         {/* End of singular div for displaying a list */}
