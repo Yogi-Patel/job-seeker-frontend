@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import logo from '../../Logo.png';
 import MainDiv from "./MainDiv";
-import CardList from "./CardList";
 class Home extends Component 
 {
     constructor(props)
@@ -78,7 +77,7 @@ class Home extends Component
             /* It is very important to have #1 before #2 
             This is because when a card is clicked, its data is needs to be fetched before changing the state to update. 
             Otherwise, the state of the application will change and it will try to access the information of the card that was clicked and it won't work  */
-            
+
             // await setState #1 
             await this.setState({updateData: this.state.data.filter(single =>{
                 return single.id === id
@@ -88,6 +87,14 @@ class Home extends Component
             await this.setState({task: 'update'})
              
         }
+        
+    }
+
+    refresh_page = async() =>
+    {
+        await this.setState({filter: 'all'})
+        this.fetchData('all')        
+        this.changeTask('list')
         
     }
 
@@ -105,6 +112,7 @@ class Home extends Component
               })
         }
 
+        const user_data = {username: this.state.username, signedIn: this.state.signedIn}
         
         /* console.log("filteredData")
         console.log(filteredData) */
@@ -133,69 +141,9 @@ class Home extends Component
 
                     {/* Scrollable list of jobs */}                
                     
-                    { this.state.task === 'list' 
-                    &&  
-                                <div className="scrollable no-scrollbar h-80 mt5">
-                                    {/* Start of singular div for displaying a list */}
-                                    { filteredData.length !== 0 &&  <CardList filteredData={filteredData} cardClicked = {this.cardClicked} />}
-                                    {/* End of singular div for displaying a list */}
-                                </div>
-        
-                    }    
-
-
-                    { this.state.task === 'update' 
-                    && 
-                                <div className="centered-div h-80 mt1" onClick={() => { this.changeTask('list')}}>
-                                    <div id = 'container' className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center v-mid " onClick = {(event) => { event.stopPropagation()}}>
-                                        <main className="pa4 black-80">
-                                        <div style={{textAlign: "right"}}>last modified: {this.state.updateData.last_modified.split("T")[0]}</div>
-                                          <form className="measure center" onSubmit={(e) => {e.preventDefault();}}>
-                                            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-
-                                                <div className="mt3">
-                                                    <label className="db fw6 lh-copy f5" htmlFor="title">Title</label>
-                                                    <input className="pa2 input-reset ba w-100" type="text" name="title"  id="title"  defaultValue = {this.state.updateData.title}/>
-                                                </div>
-                                                <div className="mv3">
-                                                    <label className="db fw6 lh-copy f5" htmlFor="company">Company</label>
-                                                    <input className=" pa2 input-reset ba w-100" type="text" name="company"  id="company"  defaultValue = {this.state.updateData.company}/>
-                                                </div>
-                                                <div className="mv3">
-                                                    <label className="db fw6 lh-copy f5" htmlFor="link">Link</label>
-                                                    <input className=" pa2 input-reset ba w-100" type="text" name="link"  id="link"  defaultValue = {this.state.updateData.link}/>
-                                                </div>
-                                                <div className="mv3">
-                                                    <label className="db fw6 lh-copy f5" htmlFor="note">Note</label>
-                                                    <input className="pa2 input-reset ba w-100" type="text" name="note"  id="note"  defaultValue = {this.state.updateData.note}/>
-                                                </div>
-                                                <div className="mv3">
-                                                    <label className="db fw6 lh-copy f5" htmlFor="category">Category</label>
-                                                    <select className="pa2 input-reset ba w-100" type="text" name="category"  id="category"  defaultValue={this.state.updateData.category}>
-                                                        <option value = "applied" >Applied</option>
-                                                        <option value = "wishlist">Wishlist</option>
-                                                        <option value = "interview">Interview</option>
-                                                        <option value = "offer">Offer</option>
-                                                        <option value = "rejected">Rejected</option>
-                                                    </select>  
-                                                </div>
-                                                <div>
-                                                    <p id = "error" className='red f6'></p>
-                                                </div>
-                                            </fieldset>
-                                            <div className="">
-                                                <input className="b ph3 pv2 input-reset ba b--black grow pointer f5 dib" type="submit" value="Update" onClick={() => {alert("Update button")}}/>
-                                            </div>
-                                            <div className="lh-copy mt3">
-                                                <button className="f5 link dim black db button_without_style underline" onClick={() => { this.changeTask('list') }} >Cancel</button>
-                                                <button className=" red f5 link dim black db button_without_style underline" onClick={() => {alert("Need to make the delete functionality")}} >Delete</button>
-                                            </div>
-                                          </form>
-                                        </main>
-                                    </div>
-                                </div>
-                    }
-                    { this.state.task === 'add' && < MainDiv task = {'add'}/>}
+                    { this.state.task === 'list' && < MainDiv task = {'list'} filteredData = {filteredData} cardClicked = {this.cardClicked}  /> }
+                    { this.state.task === 'update' && < MainDiv task = {'update'} updateData = {this.state.updateData} changeTask = {this.changeTask} api_url = {this.props.api_url} user_data = {user_data} refresh_page = {this.refresh_page}/> }
+                    { this.state.task === 'add' && < MainDiv task = {'add'} api_url = {this.props.api_url} user_data = {user_data}/>}
                     {/* End of Scrollable list of all the jobs that have been added */}
 
                 </div>
