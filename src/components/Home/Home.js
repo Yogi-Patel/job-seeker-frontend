@@ -92,9 +92,9 @@ class Home extends Component
 
     refresh_page = async() =>
     {
-        await this.setState({filter: 'all'})
-        this.fetchData('all')        
-        this.changeTask('list')
+        /* await this.setState({filter: 'all'}) */
+        await this.fetchData('all')        
+        await this.changeTask('list')
         
     }
 
@@ -143,7 +143,7 @@ class Home extends Component
                     
                     { this.state.task === 'list' && < MainDiv task = {'list'} filteredData = {filteredData} cardClicked = {this.cardClicked}  /> }
                     { this.state.task === 'update' && < MainDiv task = {'update'} updateData = {this.state.updateData} changeTask = {this.changeTask} api_url = {this.props.api_url} user_data = {user_data} refresh_page = {this.refresh_page}/> }
-                    { this.state.task === 'add' && < MainDiv task = {'add'} api_url = {this.props.api_url} user_data = {user_data}/>}
+                    { this.state.task === 'add' && < MainDiv task = {'add'} api_url = {this.props.api_url} user_data = {user_data} changeTask = {this.changeTask} refresh_page = {this.refresh_page}/>}
                     {/* End of Scrollable list of all the jobs that have been added */}
 
                 </div>
