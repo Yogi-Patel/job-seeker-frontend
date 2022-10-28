@@ -21,7 +21,9 @@ class Card extends React.Component
                     <a className="v-mid pl3 no-wrapping" href = {dataItem.link} target="_blank" rel="noopener noreferrer" onClick={(event) =>{this.props.cardClicked(false,  dataItem.id); event.stopPropagation()}}>
                         Link <img  className="pl1" src = {Link} alt="logo" width="12rem" height="12rem"/>
                     </a>
-                    <p className="v-mid pl4 no-wrapping " >Last modified: </p>
+                    <p className="b v-mid pl3 no-wrapping " >Status: </p>
+                    <p className="v-mid pl2 no-wrapping">{dataItem.category.charAt(0).toUpperCase() + dataItem.category.slice(1)} </p>
+                    <p className="b v-mid pl3 no-wrapping " >Last modified: </p>
                     <p className="v-mid pl2 no-wrapping">{dataItem.last_modified.split("T")[0]} </p>                
                 </div>                
             </div>

@@ -118,7 +118,7 @@ class MainDiv extends React.Component
                 job: new_information,
                 
             })
-        }).then(data => { console.log(data.json())});
+        }).then(data => { });
 
         await this.props.refresh_page()
     }

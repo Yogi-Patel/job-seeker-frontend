@@ -13,7 +13,8 @@ class Home extends Component
             searchField: '',
             task: 'list',
             data: [],
-            updateData: {}
+            updateData: {},
+            counts: {}
         }
         
     }
@@ -28,6 +29,8 @@ class Home extends Component
     componentDidMount()
     {
         this.fetchData('all')
+        this.fetchCounts()
+        
     }
 
 
@@ -46,17 +49,36 @@ class Home extends Component
             return data.json()
         })
         .then(result =>
-        {
-            
+        {        
             this.setState({data: result.result})
         })
     }
 
 
-    changeFilter = async (event) =>
+    fetchCounts = async() =>
+    {
+        let count = {}
+        await fetch(`${this.props.api_url}/stats`, {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              username: (this.state.username),
+              signedIn: (this.state.signedIn), 
+            })
+        })
+        .then(data => {
+            return data.json()
+        })
+        .then(async (data) => { count = data.counts})
+
+        await this.setState({counts: count})
+    }
+
+
+    changeFilter = async (id) =>
     {     
-        await this.setState({filter: event.target.id})
-        this.fetchData(event.target.id)
+        await this.setState({filter: id})
+        this.fetchData(id)
         
     }
 
@@ -93,7 +115,8 @@ class Home extends Component
     refresh_page = async() =>
     {
         /* await this.setState({filter: 'all'}) */
-        await this.fetchData('all')        
+        await this.fetchData('all')
+        await this.fetchCounts()        
         await this.changeTask('list')
         
     }
@@ -116,6 +139,8 @@ class Home extends Component
         
         /* console.log("filteredData")
         console.log(filteredData) */
+
+        
         
         return (
             <article id = 'home_container' className=" center br2 mb5  shadow-5-ns ">
@@ -160,19 +185,33 @@ class Home extends Component
                         <h1 className="f4 b db mb2 ml3">Filter by:</h1>
                         <ul className="list pl0 ma0 center">
                             <li id = "all" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
-                            ${this.state.filter === 'all' && "home-color"}`} onClick = {this.changeFilter} >All</li>
+                            ${this.state.filter === 'all' && "home-color"}`} onClick = {() => this.changeFilter('all')} >
+                                All <div className="f6 br3 ml2 ph3 pv0 ma0 dib white bg-black" onClick = {() => this.changeFilter('all')} >{this.state.counts.all}</div>
+                            </li>
                             <li id = "applied" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
-                            ${this.state.filter === 'applied' && "home-color"}`} onClick = {this.changeFilter}>Applied</li>
+                            ${this.state.filter === 'applied' && "home-color"}`} onClick = {() => this.changeFilter('applied')}>
+                                Applied <div className="f6 br3 ml2 ph3 pv0 ma0 dib white bg-black" onClick = {() => this.changeFilter('applied')} >{this.state.counts.applied}</div>
+                            </li>
                             <li id = "wishlist" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
-                            ${this.state.filter === 'wishlist' && "home-color"}`} onClick = {this.changeFilter}>Wishlist</li>
+                            ${this.state.filter === 'wishlist' && "home-color"}`} onClick = {() => this.changeFilter('wishlist')}>
+                                Wishlist <div className="f6 br3 ml2 ph3 pv0 ma0 dib white bg-black" onClick = {() => this.changeFilter('wishlist')} >{this.state.counts.wishlist}</div>
+                            </li>
                             <li id = "interview" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
-                            ${this.state.filter === 'interview' && "home-color"}`} onClick = {this.changeFilter}>Interview</li>
+                            ${this.state.filter === 'interview' && "home-color"}`} onClick = {() => this.changeFilter('interview')}>
+                                Interview <div className="f6 br3 ml2 ph3 pv0 ma0 dib white bg-black" onClick = {() => this.changeFilter('interview')} >{this.state.counts.interview}</div>
+                            </li>
                             <li id = "offer" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
-                            ${this.state.filter === 'offer' && "home-color"}`} onClick = {this.changeFilter}>Offer</li>
+                            ${this.state.filter === 'offer' && "home-color"}`} onClick = {() => this.changeFilter('offer')}>
+                                Offer <div className="f6 br3 ml2 ph3 pv0 ma0 dib white bg-black" onClick = {() => this.changeFilter('offer')} >{this.state.counts.offer}</div>
+                            </li>
                             <li id = "rejected" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
-                            ${this.state.filter === 'rejected' && "home-color"}`} onClick = {this.changeFilter}>Rejected</li>
+                            ${this.state.filter === 'rejected' && "home-color"}`} onClick = {() => this.changeFilter('rejected')}>
+                                Rejected <div className="f6 br3 ml2 ph3 pv0 ma0 dib white bg-black" onClick = {() => this.changeFilter('rejected')} >{this.state.counts.rejected}</div>
+                            </li>
                             <li id = "inactive" className = {`lh-copy pl5 pv2 ba bl-0 bt-0 br-0 b--dotted b--black-30 pointer 
-                            ${this.state.filter === 'inactive' && "home-color"}`} onClick = {this.changeFilter}>Inactive</li>
+                            ${this.state.filter === 'inactive' && "home-color"}`} onClick = {() => this.changeFilter('inactive')}>
+                                Inactive <div className="f6 br3 ml2 ph3 pv0 ma0 dib white bg-black" onClick = {() => this.changeFilter('inactive')} >{this.state.counts.inactive}</div>
+                            </li>
                         </ul>
                     </div>
                 </div>
